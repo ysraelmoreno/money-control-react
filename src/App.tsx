@@ -7,6 +7,7 @@ import { createServer, Model } from "miragejs";
 
 import { GlobalStyle } from "./styles/global";
 import { NewTransactionModal } from "./components/NewTransactionModal";
+import { TransactionsProvider } from "./TransactionsContext";
 
 createServer({
   models: {
@@ -20,7 +21,7 @@ createServer({
           id: 1,
           title: "Desenvolvimento de sites",
           type: "deposit",
-          category: "dev",
+          category: "Dev",
           amount: 6000,
           createdAt: new Date("2021-02-12 09:00:00"),
         },
@@ -67,7 +68,7 @@ export function App() {
     setIsNewTransactionModalOpen(false);
   }
   return (
-    <>
+    <TransactionsProvider>
       <Header onOpenNewTransactionModal={handleOpenNewTransactionModal} />
       <NewTransactionModal
         onRequestClose={handleCloseNewTransactionModal}
@@ -75,6 +76,6 @@ export function App() {
       />
       <Dashboard />
       <GlobalStyle />
-    </>
+    </TransactionsProvider>
   );
 }
