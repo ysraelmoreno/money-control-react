@@ -3,25 +3,52 @@ import { Header } from "./components/Header";
 import Modal from "react-modal";
 import { useState } from "react";
 
-import { createServer } from "miragejs";
+import { createServer, Model } from "miragejs";
 
 import { GlobalStyle } from "./styles/global";
 import { NewTransactionModal } from "./components/NewTransactionModal";
 
 createServer({
-  routes() {
-    this.namespace = "api";
-    this.get("/transactions", () => {
-      return [
+  models: {
+    transaction: Model,
+  },
+
+  seeds(server) {
+    server.db.loadData({
+      transactions: [
         {
           id: 1,
-          title: "Desenvolvimento de Sites",
-          amount: 12000,
+          title: "Desenvolvimento de sites",
           type: "deposit",
-          category: "Jobs",
-          createdAt: new Date(),
+          category: "dev",
+          amount: 6000,
+          createdAt: new Date("2021-02-12 09:00:00"),
         },
-      ];
+        {
+          id: 2,
+          title: "Aluguel",
+          type: "withdraw",
+          category: "Casa",
+          amount: 1100,
+          createdAt: new Date("2021-02-15 11:00:00"),
+        },
+      ],
+    });
+  },
+
+  routes() {
+    this.namespace = "api";
+
+    this.get("/transactions", () => {
+      return this.schema.all("transaction");
+    });
+
+    this.post("/transactions", (schema, request) => {
+      const data = request.requestBody;
+
+      const dataParsed = JSON.parse(data);
+
+      return schema.create("transaction", dataParsed);
     });
   },
 });
