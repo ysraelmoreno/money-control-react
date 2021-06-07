@@ -18,7 +18,7 @@ export const Container = styled.div`
     td {
       padding: 2.5rem 2rem;
       border: 0;
-
+      font-weight: 500;
       background: var(--white);
       color: var(--text-body);
 

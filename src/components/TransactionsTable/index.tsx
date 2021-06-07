@@ -1,10 +1,9 @@
-import { useContext } from "react";
 import { formatCurrencyMoney, formatDate } from "../../helpers/ValueFormatter";
-import { TransactionsContext } from "../../TransactionsContext";
+import { useTransactions } from "../../hooks/useTransactions";
 import { Container } from "./styles";
 
 export function TransactionsTable() {
-  const { transactions } = useContext(TransactionsContext);
+  const { transactions } = useTransactions();
 
   console.log(transactions);
 
@@ -26,6 +25,8 @@ export function TransactionsTable() {
               <tr key={transaction.id}>
                 <td>{transaction.title}</td>
                 <td className={transaction.type}>
+                  {" "}
+                  {transaction.type === "deposit" ? "+ " : "- "}
                   {formatCurrencyMoney({
                     locale: "pt-BR",
                     style: "currency",

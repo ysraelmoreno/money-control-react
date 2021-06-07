@@ -1,13 +1,13 @@
 import { Dashboard } from "./components/Dashboard";
 import { Header } from "./components/Header";
 import Modal from "react-modal";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { createServer, Model } from "miragejs";
 
 import { GlobalStyle } from "./styles/global";
 import { NewTransactionModal } from "./components/NewTransactionModal";
-import { TransactionsProvider } from "./TransactionsContext";
+import { TransactionsProvider } from "./hooks/useTransactions";
 
 createServer({
   models: {
