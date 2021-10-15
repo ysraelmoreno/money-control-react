@@ -1,7 +1,7 @@
 import { Dashboard } from "./components/Dashboard";
 import { Header } from "./components/Header";
 import Modal from "react-modal";
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 import { createServer, Model } from "miragejs";
 
