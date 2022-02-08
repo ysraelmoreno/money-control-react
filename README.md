@@ -16,3 +16,13 @@ Main dashboard:
 
 Add new transaction:
 ![image](https://user-images.githubusercontent.com/31359694/152906727-49d93411-7ac6-4383-8c3f-e299e449d473.png)
+
+<h4>Used techs:</h4>
+
+- Styled-components
+- ReactJS
+- Typescript
+- react-modal
+- miragejs
+- axios
+- polished
